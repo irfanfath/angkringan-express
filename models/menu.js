@@ -4,9 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Menu extends Model {
-    // static associate(models) {
-    //   Menu.hasMany(models.nama, { foreignKey: 'id', as: 'menus' });
-    // }
+    static associate(models) {
+      Menu.hasMany(models.Transaction, { foreignKey: 'menuId'});
+    }
   };
   Menu.init({
     nama: {
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    qty: DataTypes.TEXT,
+    stock: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Menu',
